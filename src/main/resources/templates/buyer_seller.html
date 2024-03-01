@@ -1,6 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+     <link th:href="@{http://localhost:8082/css/buyer_seller.css}" rel="stylesheet" />
+<!--    <link rel="stylesheet" href="../static/css/buyer_seller.css" /> -->
+  </head>
+
 <body>
-    <h1>Welcome to My Website</h1>
+    
+    <div class="outer-container">
+        <div class="details-header">
+            <div class="detail-container">
+                <p>Seller:</p>
+                <p>XYZ pvt. Ltd.</p>
+                <p>Divya Divya Divya</p>
+                <p>GSTIN: 299AAA5AAAASD</p>
+            </div>
+            <div class="detail-container">
+                <p>Buyer:</p>
+                <p>XYZ pvt. Ltd.</p>
+                <p>Divya Divya Divya</p>
+                <p>GSTIN: 299AAA5AAAASD</p>
+            </div>
+        </div>
+        <table class="item-table">
+            <tr>
+                <th>Item</th>
+                <th>Quantity</th>
+                <th>Rate</th>
+                <th>Amount</th>
+            </tr>
+            <tr>
+                <td>Product 1</td>
+                <td>12 Nos</td>
+                <td>123.00</td>
+                <td>1476.00</td>
+            </tr>
+            <tr>
+                <td>Product 1</td>
+                <td>12 Nos</td>
+                <td>123.00</td>
+                <td>1476.00</td>
+            </tr>
+        </table>
+        <div class="details-footer"></div>
+    </div>
+    
+    
 </body>
+
 </html>

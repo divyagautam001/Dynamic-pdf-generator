@@ -1,0 +1,49 @@
+html {
+    display: table;
+    margin: auto;
+}
+
+body {
+    width: 100%;
+}
+
+.outer-container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: auto;
+    margin-top: 20px;
+    width: 650px;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.details-header {
+    display: flex;
+    flex-direction: row;
+}
+
+.detail-container{
+    padding: 30px;
+    border: 1px solid black;
+    border-bottom: none;
+    border-collapse: collapse;
+    width: 50%;
+}
+
+
+.item-table{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.item-table th, .item-table td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.details-footer{
+    height: 80px;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
