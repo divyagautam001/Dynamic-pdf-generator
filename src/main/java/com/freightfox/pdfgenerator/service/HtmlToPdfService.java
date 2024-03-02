@@ -5,8 +5,6 @@ import com.itextpdf.html2pdf.ConverterProperties;
 import com.itextpdf.html2pdf.HtmlConverter;
 import com.itextpdf.html2pdf.resolver.font.DefaultFontProvider;
 import com.itextpdf.kernel.pdf.PdfWriter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +13,6 @@ import java.io.FileOutputStream;
 
 @Service
 public class HtmlToPdfService {
-
-    Logger logger = LoggerFactory.getLogger(HtmlToPdfService.class);
 
     @Value("${project.pdf.path}")
     private String path;

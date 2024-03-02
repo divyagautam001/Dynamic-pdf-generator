@@ -8,9 +8,9 @@ import org.thymeleaf.context.Context;
 public class ContextService {
 
 
-    public Context setBuyerSellerData(BuyerSellerDetails details){
+    public Context setBuyerSellerData(BuyerSellerDetails details) {
         Context context = new Context();
-        context.setVariable("details",details);
+        context.setVariable("details", details);
         return context;
     }
 }

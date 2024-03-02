@@ -22,11 +22,11 @@ public class PdfManagerService {
     @Autowired
     private ContextService contextService;
 
-    public void handle(BuyerSellerDetails details, String fileName){
+    public void handle(BuyerSellerDetails details, String fileName) {
         Context context = contextService.setBuyerSellerData(details);
         logger.info("context created");
-        String finalHtml = springTemplateEngine.process("buyer_seller",context);
+        String finalHtml = springTemplateEngine.process("buyer_seller", context);
         logger.info("html generated for given buyer seller details");
-        htmlToPdfService.htmlToPdf(finalHtml,fileName);
+        htmlToPdfService.htmlToPdf(finalHtml, fileName);
     }
 }

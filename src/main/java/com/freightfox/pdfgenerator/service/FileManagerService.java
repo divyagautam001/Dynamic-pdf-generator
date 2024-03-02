@@ -10,8 +10,8 @@ import java.io.InputStream;
 @Service
 public class FileManagerService {
 
-    public InputStream getResource(String path,String filename) {
-        String fullpath = path+ "/"+ filename;
+    public InputStream getResource(String path, String filename) {
+        String fullpath = path + "/" + filename;
         InputStream inputStream = null;
         try {
             inputStream = new FileInputStream(fullpath);
@@ -21,8 +21,8 @@ public class FileManagerService {
         return inputStream;
     }
 
-    public boolean doesFileExist(String path, String filename){
-        String fullpath = path+ "/"+ filename;
+    public boolean doesFileExist(String path, String filename) {
+        String fullpath = path + "/" + filename;
         File f = new File(fullpath);
         return f.exists();
     }
