@@ -39,6 +39,24 @@ public class WebController {
             pdfManagerService.handle(details, fileName);
             logger.info("{} created with buyer seller details - {}", details, fileName);
             return ResponseEntity.ok()
+                    .body("pdf => " + fileName+" will be created within some time");
+        } else {
+            logger.info("{} already exist", fileName);
+            return ResponseEntity.ok()
+                    .body("pdf already exist => " + fileName);
+        }
+    }
+
+    @PostMapping("/sync/generate-pdf")
+    public ResponseEntity<String> generatePdfSync(@RequestBody BuyerSellerDetails details) {
+        logger.info("received request body - {}", details);
+        String fileName = "f" + details.hashCode() + ".pdf";
+        boolean fileExists = fileManagerService.doesFileExist(path, fileName);
+
+        if (!fileExists) {
+            pdfManagerService.handleSync(details, fileName);
+            logger.info("{} created with buyer seller details - {}", details, fileName);
+            return ResponseEntity.ok()
                     .body("pdf created => " + fileName);
         } else {
             logger.info("{} already exist", fileName);
