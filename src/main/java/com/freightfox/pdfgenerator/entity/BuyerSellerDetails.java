@@ -1,6 +1,7 @@
 package com.freightfox.pdfgenerator.entity;
 
 import java.util.List;
+import java.util.Objects;
 
 public class BuyerSellerDetails {
 
@@ -69,6 +70,33 @@ public class BuyerSellerDetails {
 
     public void setItems(List<Item> items) {
         this.items = items;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof BuyerSellerDetails that)) return false;
+
+        if (!Objects.equals(seller, that.seller)) return false;
+        if (!sellerGstin.equals(that.sellerGstin)) return false;
+        if (!Objects.equals(sellerAddress, that.sellerAddress))
+            return false;
+        if (!Objects.equals(buyer, that.buyer)) return false;
+        if (!buyerGstin.equals(that.buyerGstin)) return false;
+        if (!Objects.equals(buyerAddress, that.buyerAddress)) return false;
+        return Objects.equals(items, that.items);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = seller != null ? seller.hashCode() : 0;
+        result = 31 * result + sellerGstin.hashCode();
+        result = 31 * result + (sellerAddress != null ? sellerAddress.hashCode() : 0);
+        result = 31 * result + (buyer != null ? buyer.hashCode() : 0);
+        result = 31 * result + buyerGstin.hashCode();
+        result = 31 * result + (buyerAddress != null ? buyerAddress.hashCode() : 0);
+        result = 31 * result + (items != null ? items.hashCode() : 0);
+        return result;
     }
 
     @Override
