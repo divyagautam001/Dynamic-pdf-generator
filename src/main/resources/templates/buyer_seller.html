@@ -1,6 +1,101 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<!--    pdf generator having some issue with picking the static files so moved style here-->
+    <style>
+        html {
+           display: table;
+           margin: auto;
+        }
+
+        body {
+           width: 100%;
+        }
+
+        .outer-container{
+           display: flex;
+           justify-content: center;
+           flex-direction: column;
+           margin: auto;
+           margin-top: 20px;
+           width: 650px;
+           border: 1px solid black;
+           border-collapse: collapse;
+        }
+
+        .details-header {
+           display: flex;
+           flex-direction: row;
+        }
+
+        .detail-container{
+           padding: 30px;
+           border: 1px solid black;
+           border-bottom: none;
+           border-collapse: collapse;
+           width: 50%;
+        }
+
+
+        .item-table{
+           border: 1px solid black;
+           border-collapse: collapse;
+        }
+
+        .item-table th, .item-table td {
+           text-align: center;
+           border: 1px solid black;
+           border-collapse: collapse;
+           padding: 5px;
+        }
+
+        .details-footer{
+           height: 80px;
+           border: 1px solid black;
+           border-collapse: collapse;
+        }
+
+        p {
+           margin: 0em;
+        }
+    </style>
+</head>
+
 <body>
-    <h1>Welcome to My Website</h1>
+
+<div class="outer-container">
+    <div class="details-header">
+        <div class="detail-container">
+            <p><b>Seller:</b></p>
+            <p th:text="${details.seller}">seller</p>
+            <p th:text="${details.sellerAddress}">Address</p>
+            <p>GSTIN: <span th:text="${details.sellerGstin}">xxxxxxxxx</span></p>
+        </div>
+        <div class="detail-container">
+            <p><b>Buyer:</b></p>
+            <p th:text="${details.buyer}">buyer</p>
+            <p th:text="${details.buyerAddress}">Address</p>
+            <p>GSTIN: <span th:text="${details.buyerGstin}">yyyyyyyyy</span></p>
+        </div>
+    </div>
+    <table class="item-table">
+        <tr>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Rate</th>
+            <th>Amount</th>
+        </tr>
+        <tr th:each="item : ${details.items}">
+            <td th:text="${item.name}">name</td>
+            <td th:text="${item.quantity}">quantity</td>
+            <td th:text="${item.rate}">000.00</td>
+            <td th:text="${item.amount}">000.00</td>
+        </tr>
+    </table>
+    <div class="details-footer"></div>
+</div>
+
+
 </body>
+
 </html>

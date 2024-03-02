@@ -1,5 +1,7 @@
 package com.freightfox.pdfgenerator.entity;
 
+import java.util.Objects;
+
 public class Item {
 
     private String name;
@@ -44,6 +46,26 @@ public class Item {
 
     public void setAmount(Double amount) {
         this.amount = amount;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Item item)) return false;
+
+        if (!Objects.equals(name, item.name)) return false;
+        if (!Objects.equals(quantity, item.quantity)) return false;
+        if (!Objects.equals(rate, item.rate)) return false;
+        return Objects.equals(amount, item.amount);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (quantity != null ? quantity.hashCode() : 0);
+        result = 31 * result + (rate != null ? rate.hashCode() : 0);
+        result = 31 * result + (amount != null ? amount.hashCode() : 0);
+        return result;
     }
 
     @Override
