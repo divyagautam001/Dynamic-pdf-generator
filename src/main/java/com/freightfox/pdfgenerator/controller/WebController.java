@@ -3,6 +3,7 @@ package com.freightfox.pdfgenerator.controller;
 import com.freightfox.pdfgenerator.entity.BuyerSellerDetails;
 import com.freightfox.pdfgenerator.service.FileManagerService;
 import com.freightfox.pdfgenerator.service.PdfManagerService;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class WebController {
     private String path;
 
     @PostMapping("/generate-pdf")
-    public ResponseEntity<String> generatePdf(@RequestBody BuyerSellerDetails details) {
+    public ResponseEntity<String> generatePdf(@RequestBody @Valid BuyerSellerDetails details) {
         logger.info("received request body - {}", details);
         String fileName = "f" + details.hashCode() + ".pdf";
         boolean fileExists = fileManagerService.doesFileExist(path, fileName);
@@ -48,7 +49,7 @@ public class WebController {
     }
 
     @PostMapping("/sync/generate-pdf")
-    public ResponseEntity<String> generatePdfSync(@RequestBody BuyerSellerDetails details) {
+    public ResponseEntity<String> generatePdfSync(@RequestBody @Valid BuyerSellerDetails details) {
         logger.info("received request body - {}", details);
         String fileName = "f" + details.hashCode() + ".pdf";
         boolean fileExists = fileManagerService.doesFileExist(path, fileName);
