@@ -1,12 +1,16 @@
 # Dynamic PDF Generator
 
+a Spring Boot Application with REST API to generate PDF using Java Template Engine Thymeleaf.
+Requirement
+
 ### Features -
 ```text
 1. Generate pdf from given BuyerSellerDetails Synchronously
 2. Generate pdf from given BuyerSellerDetails Asynchronously
-3. Download generated pdf
-4. Validation on input request
-5. Exception handling to return proper Error Response
+3. Store the above-generated PDF on the local storage
+4. Download generated pdf
+5. Validation on input request
+6. Exception handling to return proper Error Response
 ```
 
 ### API Endpoints -
