@@ -1,6 +1,8 @@
 # Dynamic PDF Generator
 
+
 ### API Endpoints -
+postman collection json is provided to import - Dynamic PDF Generator.postman_collection.json
 
 ASYNC POST http://localhost:8082/api/generate-pdf
 ```
