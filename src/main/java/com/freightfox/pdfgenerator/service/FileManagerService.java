@@ -12,6 +12,8 @@ public class FileManagerService {
 
     public InputStream getResource(String path, String filename) {
         String fullpath = path + "/" + filename;
+        File directory = new File(path);
+        if(!directory.exists()) directory.mkdir();
         InputStream inputStream = null;
         try {
             inputStream = new FileInputStream(fullpath);
