@@ -1,5 +1,13 @@
 # Dynamic PDF Generator
 
+### Features -
+```text
+1. Generate pdf from given BuyerSellerDetails Synchronously
+2. Generate pdf from given BuyerSellerDetails Asynchronously
+3. Download generated pdf
+4. Validation on input request
+5. Exception handling to return proper Error Response
+```
 
 ### API Endpoints -
 postman collection json is provided to import - Dynamic PDF Generator.postman_collection.json
