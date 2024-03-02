@@ -34,7 +34,7 @@ public class WebController {
     public ResponseEntity<String> generatePdf(@RequestBody @Valid BuyerSellerDetails details) {
         logger.info("received request body - {}", details);
         String fileName = "f" + details.hashCode() + ".pdf";
-        boolean fileExists = fileManagerService.doesFileExist(path, fileName);
+        boolean fileExists = fileManagerService.doesFileExist(fileName);
 
         if (!fileExists) {
             pdfManagerService.handle(details, fileName);
@@ -52,7 +52,7 @@ public class WebController {
     public ResponseEntity<String> generatePdfSync(@RequestBody @Valid BuyerSellerDetails details) {
         logger.info("received request body - {}", details);
         String fileName = "f" + details.hashCode() + ".pdf";
-        boolean fileExists = fileManagerService.doesFileExist(path, fileName);
+        boolean fileExists = fileManagerService.doesFileExist(fileName);
 
         if (!fileExists) {
             pdfManagerService.handleSync(details, fileName);
@@ -69,7 +69,7 @@ public class WebController {
     @GetMapping(value = "/pdf/{pdfName}")
     @ResponseBody
     public ResponseEntity<InputStreamResource> getPdf(@PathVariable String pdfName) {
-        InputStream resource = fileManagerService.getResource(path, pdfName);
+        InputStream resource = fileManagerService.getResource(pdfName);
         return ResponseEntity.ok()
                 .contentType(MediaType.APPLICATION_PDF)
                 .body(new InputStreamResource(resource));

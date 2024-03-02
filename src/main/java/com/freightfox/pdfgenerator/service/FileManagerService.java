@@ -1,9 +1,8 @@
 package com.freightfox.pdfgenerator.service;
 
-import com.freightfox.pdfgenerator.configuration.AsyncThreadPoolConfig;
-import com.freightfox.pdfgenerator.exception.PdfGenerationFailedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
@@ -12,13 +11,15 @@ import java.io.*;
 public class FileManagerService {
 
     Logger logger = LoggerFactory.getLogger(FileManagerService.class);
+    @Value("${project.pdf.path}")
+    private String path;
 
-    public InputStream getResource(String path, String filename) {
+    public InputStream getResource(String filename) {
         File directory = new File(path);
-        if(!directory.exists()) directory.mkdir();
+        if (!directory.exists()) directory.mkdir();
 
         String fullpath = path + "/" + filename;
-        InputStream inputStream = null;
+        InputStream inputStream;
         try {
             inputStream = new FileInputStream(fullpath);
         } catch (FileNotFoundException e) {
@@ -27,18 +28,18 @@ public class FileManagerService {
         return inputStream;
     }
 
-    public boolean doesFileExist(String path, String filename) {
+    public boolean doesFileExist(String filename) {
         File directory = new File(path);
-        if(!directory.exists()) directory.mkdir();
+        if (!directory.exists()) directory.mkdir();
 
         String fullpath = path + "/" + filename;
         File f = new File(fullpath);
         return f.exists();
     }
 
-    public void saveResource(String path, String filename, ByteArrayOutputStream byteArrayOutputStream){
+    public void saveResource(String filename, ByteArrayOutputStream byteArrayOutputStream) {
         File directory = new File(path);
-        if(!directory.exists()) directory.mkdir();
+        if (!directory.exists()) directory.mkdir();
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(path + "/" + filename);
             byteArrayOutputStream.writeTo(fileOutputStream);

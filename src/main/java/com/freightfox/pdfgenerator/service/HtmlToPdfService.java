@@ -5,16 +5,12 @@ import com.itextpdf.html2pdf.HtmlConverter;
 import com.itextpdf.html2pdf.resolver.font.DefaultFontProvider;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayOutputStream;
 
 @Service
 public class HtmlToPdfService {
-
-    @Value("${project.pdf.path}")
-    private String path;
 
     @Autowired
     private FileManagerService fileManagerService;
@@ -26,6 +22,6 @@ public class HtmlToPdfService {
         converterProperties.setFontProvider(new DefaultFontProvider());
         HtmlConverter.convertToPdf(htmlString, pdfWriter, converterProperties);
 
-        fileManagerService.saveResource(path, filename, byteArrayOutputStream);
+        fileManagerService.saveResource(filename, byteArrayOutputStream);
     }
 }
