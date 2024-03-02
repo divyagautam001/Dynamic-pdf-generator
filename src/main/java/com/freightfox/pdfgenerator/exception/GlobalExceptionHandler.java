@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +29,13 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Object> handleFileNotFoundException(FileNotFoundException exception) {
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
+                .body(exception.getMessage());
+    }
+
+    @ExceptionHandler({IOException.class})
+    public ResponseEntity<Object> handleIOException(IOException exception) {
+        return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(exception.getMessage());
     }
 

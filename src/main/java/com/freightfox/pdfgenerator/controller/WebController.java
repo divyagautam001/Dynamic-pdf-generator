@@ -38,7 +38,7 @@ public class WebController {
 
         if (!fileExists) {
             pdfManagerService.handle(details, fileName);
-            logger.info("{} created with buyer seller details - {}", details, fileName);
+            logger.info("{} creating with buyer seller details - {}", fileName, details);
             return ResponseEntity.ok()
                     .body("pdf => " + fileName+" will be created within some time");
         } else {
@@ -56,7 +56,7 @@ public class WebController {
 
         if (!fileExists) {
             pdfManagerService.handleSync(details, fileName);
-            logger.info("{} created with buyer seller details - {}", details, fileName);
+            logger.info("{} created with buyer seller details - {}", fileName, details);
             return ResponseEntity.ok()
                     .body("pdf created => " + fileName);
         } else {
