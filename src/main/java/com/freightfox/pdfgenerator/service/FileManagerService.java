@@ -23,6 +23,8 @@ public class FileManagerService {
 
     public boolean doesFileExist(String path, String filename) {
         String fullpath = path + "/" + filename;
+        File directory = new File(path);
+        if(!directory.exists()) directory.mkdir();
         File f = new File(fullpath);
         return f.exists();
     }
