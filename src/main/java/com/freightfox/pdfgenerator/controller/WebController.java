@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.InputStream;
 
+import static org.springframework.http.HttpStatus.CREATED;
+
 @RestController
 @RequestMapping("/api")
 public class WebController {
@@ -39,7 +41,7 @@ public class WebController {
         if (!fileExists) {
             pdfManagerService.handle(details, fileName);
             logger.info("{} creating with buyer seller details - {}", fileName, details);
-            return ResponseEntity.ok()
+            return ResponseEntity.status(CREATED)
                     .body("pdf => " + fileName+" will be created within some time");
         } else {
             logger.info("{} already exist", fileName);
@@ -57,7 +59,7 @@ public class WebController {
         if (!fileExists) {
             pdfManagerService.handleSync(details, fileName);
             logger.info("{} created with buyer seller details - {}", fileName, details);
-            return ResponseEntity.ok()
+            return ResponseEntity.status(CREATED)
                     .body("pdf created => " + fileName);
         } else {
             logger.info("{} already exist", fileName);

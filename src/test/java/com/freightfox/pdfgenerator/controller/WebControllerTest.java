@@ -33,7 +33,7 @@ public class WebControllerTest {
     private FileManagerService fileManagerService;
 
     @Test
-    void shouldReturnOkResponseWhenAsyncGeneratePdfCalledWithSameData() throws Exception {
+    void shouldReturnOkResponseWhenAsyncGeneratePdfCalledWithExistingData() throws Exception {
         when(fileManagerService.doesFileExist(any(String.class))).thenReturn(true);
 
         MvcResult result = this.mockMvc.perform(post("/api/generate-pdf")
@@ -57,7 +57,7 @@ public class WebControllerTest {
                         .content(buyerSellerDetailsString)
                 )
                 .andDo(print())
-                .andExpect(status().isOk())
+                .andExpect(status().isCreated())
                 .andReturn();
         String content = result.getResponse().getContentAsString();
         String generatedFileName = "f" + getBuyerSellerDetails().hashCode() + ".pdf";
@@ -73,7 +73,7 @@ public class WebControllerTest {
                         .content(buyerSellerDetailsString)
                 )
                 .andDo(print())
-                .andExpect(status().isOk())
+                .andExpect(status().isCreated())
                 .andReturn();
         String content = result.getResponse().getContentAsString();
         String generatedFileName = "f" + getBuyerSellerDetails().hashCode() + ".pdf";
