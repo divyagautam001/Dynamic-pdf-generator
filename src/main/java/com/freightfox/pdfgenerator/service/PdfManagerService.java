@@ -14,14 +14,16 @@ public class PdfManagerService {
 
     Logger logger = LoggerFactory.getLogger(PdfManagerService.class);
 
-    @Autowired
     private HtmlToPdfService htmlToPdfService;
-
-    @Autowired
     private SpringTemplateEngine springTemplateEngine;
+    private ContextService contextService;
 
     @Autowired
-    private ContextService contextService;
+    public PdfManagerService(HtmlToPdfService htmlToPdfService, SpringTemplateEngine springTemplateEngine,ContextService contextService){
+        this.htmlToPdfService = htmlToPdfService;
+        this.springTemplateEngine = springTemplateEngine;
+        this.contextService = contextService;
+    }
 
     @Async
     public void handle(BuyerSellerDetails details, String fileName) {

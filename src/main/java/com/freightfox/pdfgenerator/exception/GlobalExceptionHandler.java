@@ -18,12 +18,6 @@ import java.util.stream.Collectors;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
-    @ExceptionHandler({PdfGenerationFailedException.class})
-    public ResponseEntity<Object> handlePdfGenerationFailed(PdfGenerationFailedException exception) {
-        return ResponseEntity
-                .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(exception.getMessage());
-    }
 
     @ExceptionHandler({FileNotFoundException.class})
     public ResponseEntity<Object> handleFileNotFoundException(FileNotFoundException exception) {
@@ -39,18 +33,18 @@ public class GlobalExceptionHandler {
                 .body(exception.getMessage());
     }
 
-    @ExceptionHandler({MethodArgumentNotValidException.class})
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    ResponseEntity<Map<String, List<String>>> handleConstraintViolationException(MethodArgumentNotValidException e) {
-        List<String> errors = e.getBindingResult().getFieldErrors()
-                .stream().map(FieldError::getDefaultMessage).collect(Collectors.toList());
-        return new ResponseEntity<>(getErrorsMap(errors), new HttpHeaders(), HttpStatus.BAD_REQUEST);
-    }
-
-    private Map<String, List<String>> getErrorsMap(List<String> errors) {
-        Map<String, List<String>> errorResponse = new HashMap<>();
-        errorResponse.put("errors", errors);
-        return errorResponse;
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<Map<String, String>> handleValidationExceptions(
+            MethodArgumentNotValidException ex) {
+        Map<String, String> errors = new HashMap<>();
+        ex.getBindingResult().getAllErrors().forEach((error) -> {
+            String fieldName = ((FieldError) error).getField();
+            String errorMessage = error.getDefaultMessage();
+            errors.put(fieldName, errorMessage);
+        });
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(errors);
     }
 
 }

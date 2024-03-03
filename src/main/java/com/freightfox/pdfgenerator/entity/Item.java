@@ -9,6 +9,9 @@ public class Item {
     private Double rate;
     private Double amount;
 
+    public Item() {
+    }
+
     public Item(String name, String quantity, Double rate, Double amount) {
         this.name = name;
         this.quantity = quantity;
